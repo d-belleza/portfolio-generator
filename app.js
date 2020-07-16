@@ -3,35 +3,42 @@ const inquirer = require('inquirer');
 const promptUser = () => {
     return inquirer.prompt([
         {
-          type: 'input',
-          name: 'name',
-          message: 'What is your name?',
-          validate: nameInput => {
-            if (nameInput) {
-              return true;
-            } else {
-              console.log('Please enter your name!');
-              return false;
+            type: 'input',
+            name: 'name',
+            message: 'What is your name?',
+            validate: nameInput => {
+                if (nameInput) {
+                return true;
+                } else {
+                console.log('Please enter your name!');
+                return false;
+                }
             }
-          }
         },
         {
-          type: 'input',
-          name: 'github',
-          message: 'Enter your GitHub Username',
-          validate: githubInput => {
-            if (githubInput) {
-              return true;
-            } else {
-              console.log('Please enter your GitHub Username!');
-              return false;
+            type: 'input',
+            name: 'github',
+            message: 'Enter your GitHub Username',
+            validate: githubInput => {
+                if (githubInput) {
+                return true;
+                } else {
+                console.log('Please enter your GitHub Username!');
+                return false;
+                }
             }
-          }
         },
         {
-          type: 'input',
-          name: 'about',
-          message: 'Provide some information about yourself:'
+            type: 'confirm',
+            name: 'confirmAbout',
+            message: 'Would you like to enter some information about yourself for an "About" section?',
+            default: true
+        },
+        {
+            type: 'input',
+            name: 'about',
+            message: 'Provide some information about yourself:',
+            when: ({ confirmAbout }) => confirmAbout
         }
     ]);
 };
@@ -53,12 +60,12 @@ const promptProject = portfolioData => {
         message: 'What is the name of your project?',
         validate: projectnameInput => {
             if (projectnameInput) {
-              return true;
+            return true;
             } else {
-              console.log('Please enter your project name!');
-              return false;
+            console.log('Please enter your project name!');
+            return false;
             }
-          }
+        }
       },
       {
         type: 'input',
@@ -66,12 +73,12 @@ const promptProject = portfolioData => {
         message: 'Provide a description of the project (Required)',
         validate: projectdescInput => {
             if (projectdescInput) {
-              return true;
+            return true;
             } else {
-              console.log('Please enter your project description!');
-              return false;
+            console.log('Please enter your project description!');
+            return false;
             }
-          }
+        }
       },
       {
         type: 'checkbox',
@@ -85,12 +92,12 @@ const promptProject = portfolioData => {
         message: 'Enter the GitHub link to your project. (Required)',
         validate: linkInput => {
             if (linkInput) {
-              return true;
+            return true;
             } else {
-              console.log('Please enter your GitHub project link!');
-              return false;
+            console.log('Please enter your GitHub project link!');
+            return false;
             }
-          }
+        }
       },
       {
         type: 'confirm',
